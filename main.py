@@ -23,7 +23,6 @@ def enable_threads_exceptions() -> None:
     def exception_hook(exctype, value, traceback):
         excepthook(exctype, value, traceback)
         sys.exit(1)
-
     sys.excepthook = exception_hook
 
 

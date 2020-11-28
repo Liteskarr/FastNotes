@@ -5,7 +5,6 @@ import consts
 from dbuser.connection_interface import ConnectionInterface
 from structures.note import NoteData
 
-
 creating_new_note_request = """
 INSERT INTO notes(name, text, creation_date, editing_date, [group]) 
 VALUES(?, '', ?, ?, ?);
@@ -62,12 +61,12 @@ class NotesUser(ConnectionInterface):
 
     def get_note_by_id(self, id_: int) -> NoteData:
         cursor = self.cursor()
-        return NoteData.from_tuple(cursor.execute(getting_note_by_id_request, (id_, )).fetchone())
+        return NoteData.from_tuple(cursor.execute(getting_note_by_id_request, (id_,)).fetchone())
 
     def get_notes_by_group(self, group_id: int) -> List[NoteData]:
         cursor = self.cursor()
         return list(map(NoteData.from_tuple,
-                        cursor.execute(getting_notes_by_group, (group_id, )).fetchall()))
+                        cursor.execute(getting_notes_by_group, (group_id,)).fetchall()))
 
     def get_all_notes(self) -> List[NoteData]:
         cursor = self.cursor()
@@ -84,8 +83,8 @@ class NotesUser(ConnectionInterface):
 
     def delete_note_by_id(self, id_: int) -> None:
         cursor = self.cursor()
-        cursor.execute(deleting_note_by_id_request, (id_, ))
+        cursor.execute(deleting_note_by_id_request, (id_,))
 
     def delete_notes_by_group_id(self, group_id: int) -> None:
         cursor = self.cursor()
-        cursor.execute(deleting_notes_by_group_id_request, (group_id, ))
+        cursor.execute(deleting_notes_by_group_id_request, (group_id,))

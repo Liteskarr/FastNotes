@@ -5,24 +5,22 @@ import PyQt5.uic as uic
 from PyQt5.QtWidgets import (QMainWindow,
                              QMessageBox)
 
+from dbuser.group import GroupsUser
+from dbuser.note import NotesUser
+from dbuser.notice import NoticeUser
+from dbuser.tag import TagUser
+from structures.group import GroupData
+from structures.note import NoteData
+from structures.note_with_tags import NoteWithTags
+from structures.notice import NoticeData
+from structures.tags_update import TagsUpdate
 from widgets.explorer import ExplorerWidget
-from widgets.note_editor import NoteEditorWidget
-from widgets.searching_dialog import SearchingDialog
-from widgets.tags_editor import TagsEditorWidget
 from widgets.help_panel import HelpPanelWidget
+from widgets.note_editor import NoteEditorWidget
 from widgets.notice_editor import NoticeEditorWidget
 from widgets.notices_viewer import NoticesViewWidget
-
-from structures.notice import NoticeData
-from structures.note import NoteData
-from structures.group import GroupData
-from structures.tags_update import TagsUpdate
-from structures.note_with_tags import NoteWithTags
-
-from dbuser.note import NotesUser
-from dbuser.group import GroupsUser
-from dbuser.tag import TagUser
-from dbuser.notice import NoticeUser
+from widgets.searching_dialog import SearchingDialog
+from widgets.tags_editor import TagsEditorWidget
 
 
 class Window(QMainWindow):

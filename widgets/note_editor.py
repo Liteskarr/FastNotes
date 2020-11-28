@@ -4,7 +4,6 @@ from itertools import cycle
 from typing import Union, List
 
 import PyQt5.uic as uic
-from PyQt5.QtGui import QTextCursor
 # Из-за особенностей PyQt строку ниже удалять не требуется
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 from PyQt5.QtCore import (pyqtSignal)
