@@ -109,6 +109,7 @@ class NoteEditorWidget(QWidget):
         self.saved.emit(self._data_for_saving)
         self._data = self._data_for_saving
         self._change_saving_button_bg()
+        self._reload_ui()
 
     def _delete(self) -> None:
         self.deleted.emit(self._data)
