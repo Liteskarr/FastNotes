@@ -7,8 +7,8 @@ from PyQt5.QtWidgets import (QDialog,
                              QListWidgetItem,
                              QInputDialog)
 
-from widgets.tag_item import TagItem
 from structures.tags_update import TagsUpdate
+from widgets.tag_item import TagItem
 
 
 class TagsEditorWidget(QDialog):

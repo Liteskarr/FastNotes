@@ -8,14 +8,14 @@ from PyQt5.QtWidgets import (QDialog,
                              QWidget,
                              QListWidgetItem)
 
-from widgets.searching_result import SearchingResultPanel
-from widgets.list_separator import ListSeparatorWidget
+from dbuser.group import GroupsUser
+from dbuser.note import NotesUser
+from dbuser.tag import TagUser
+from structures.group import GroupData
 from structures.note import NoteData
 from structures.note_with_tags import NoteWithTags
-from structures.group import GroupData
-from dbuser.note import NotesUser
-from dbuser.group import GroupsUser
-from dbuser.tag import TagUser
+from widgets.list_separator import ListSeparatorWidget
+from widgets.searching_result import SearchingResultPanel
 
 
 DATETIME_FORMAT = "%d.%m.%Y"
@@ -37,12 +37,13 @@ def is_sub_sequence(original: Iterable, request: Iterable) -> bool:
 def construct_function_with_args(function, *args):
     def dec():
         return function(*args)
+
     return dec
 
 
 class SearchingDialog(QDialog):
-    group_chosen = pyqtSignal(int)  # group_id
-    note_chosen = pyqtSignal(int, int)  # note_id, cursor_position
+    group_chosen = pyqtSignal(int)
+    note_chosen = pyqtSignal(int, int)
 
     def __init__(self, parent, connection: sqlite3.Connection):
         super(SearchingDialog, self).__init__(parent)
@@ -125,7 +126,7 @@ class SearchingDialog(QDialog):
         notes_by_text = self._get_filtered_notes_by_text()
         notes_by_tags = self._get_filtered_notes_by_tags()
         groups_by_name = self._get_filtered_groups_by_name()
-        if not(notes_by_name or notes_by_text or notes_by_tags or groups_by_name):
+        if not (notes_by_name or notes_by_text or notes_by_tags or groups_by_name):
             self._add_separator('Ничего не найдено :(')
             return
 

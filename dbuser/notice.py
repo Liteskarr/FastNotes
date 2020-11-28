@@ -3,7 +3,6 @@ from typing import List
 from dbuser.connection_interface import ConnectionInterface
 from structures.notice import NoticeData
 
-
 getting_unread_notices_request = """
 SELECT * FROM notices 
 WHERE
@@ -47,4 +46,4 @@ class NoticeUser(ConnectionInterface):
 
     def read_notice(self, id_: int) -> None:
         cursor = self.cursor()
-        cursor.execute(reading_notice_by_id_request, (id_, ))
+        cursor.execute(reading_notice_by_id_request, (id_,))

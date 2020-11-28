@@ -6,8 +6,8 @@ from PyQt5.QtCore import (pyqtSignal,
 from PyQt5.QtWidgets import (QDialog,
                              QWidget)
 
-from structures.notice import NoticeData
 from structures.note import NoteData
+from structures.notice import NoticeData
 
 
 class NoticeEditorWidget(QDialog):

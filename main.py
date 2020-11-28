@@ -1,10 +1,9 @@
-import sys
 import configparser
+import sys
 
 from PyQt5.QtWidgets import (QApplication)
 
 from widgets.window import Window
-
 
 app: QApplication
 window: Window
@@ -23,6 +22,7 @@ def enable_threads_exceptions() -> None:
     def exception_hook(exctype, value, traceback):
         excepthook(exctype, value, traceback)
         sys.exit(1)
+
     sys.excepthook = exception_hook
 
 
