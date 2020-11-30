@@ -1,3 +1,7 @@
+"""
+Модуль, отвечащий за взаимодействие с данными заметок SQL-таблицы.
+"""
+
 from datetime import datetime
 from typing import List
 

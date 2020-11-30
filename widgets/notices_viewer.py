@@ -1,3 +1,8 @@
+"""
+Модуль, отвечающий за отрисовку всех существующих напоминаний.
+Самостоятельно выполняет SQL-запросы, однако требует внешнего подключения к БД.
+"""
+
 import sqlite3
 
 import PyQt5.uic as uic
@@ -38,16 +43,16 @@ class NoticesViewWidget(QDialog):
         self.note_chosen.emit(note_id, 0)
         self.close()
 
-    def _draw_notice(self, data: NoticeData):
+    def _draw_notice(self, data: NoticeData) -> None:
         widget = NoticeItemWidget(data=data)
         widget.note_chosen.connect(self._handle_note_chosen)
         widget.notice_dropped.connect(self._handle_notice_drop)
         self._fast_push(widget)
 
-    def _clear(self):
+    def _clear(self) -> None:
         self.notices.clear()
 
-    def _redraw(self):
+    def _redraw(self) -> None:
         self._clear()
         notices = self._sql_notices_user.get_unread_notices_ordered_by_date()
         for notice in notices:

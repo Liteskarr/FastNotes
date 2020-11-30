@@ -1,3 +1,7 @@
+"""
+Модуль, отвечающий за создание напоминания на заметку.
+"""
+
 from datetime import datetime
 
 import PyQt5.uic as uic
@@ -28,7 +32,7 @@ class NoticeEditorWidget(QDialog):
                                                       now_dt.hour,
                                                       now_dt.minute))
 
-    def _handle_adding(self):
+    def _handle_adding(self) -> None:
         notice = NoticeData(id=0,
                             note=self._note,
                             description=self.description_editor.toPlainText(),
@@ -36,5 +40,5 @@ class NoticeEditorWidget(QDialog):
         self.notice_added.emit(notice)
         self.close()
 
-    def _handle_closing(self):
+    def _handle_closing(self) -> None:
         self.close()

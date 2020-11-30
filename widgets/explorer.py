@@ -1,3 +1,10 @@
+"""
+Модуль, берущий на себя ответственность за навигацию по группам и заметкам.
+Также через него осуществляется переход на диалоговые окна напоминаний и поиска.
+Упоминается в документации, как проводник.
+"""
+
+
 from typing import List, Callable
 
 import PyQt5.uic as uic
@@ -9,9 +16,9 @@ from PyQt5.QtWidgets import (QWidget,
 from structures.group import GroupData
 from structures.note import NoteData
 from structures.note_with_tags import NoteWithTags
-from widgets.group_item import GroupItem
+from widgets.group_item import GroupItemWidget
 from widgets.list_separator import ListSeparatorWidget
-from widgets.note_item import NoteItem
+from widgets.note_item import NoteItemWidget
 
 
 class ExplorerWidget(QWidget):
@@ -74,12 +81,12 @@ class ExplorerWidget(QWidget):
         self._fast_push(widget)
 
     def _add_note(self, note: NoteData, tags: List[str]):
-        widget = NoteItem(note, tags)
+        widget = NoteItemWidget(note, tags)
         widget.clicked.connect(lambda: self.note_chosen.emit(note.id))
         self._fast_push(widget)
 
     def _add_group(self, group: GroupData):
-        widget = GroupItem(group, self.edit_checker)
+        widget = GroupItemWidget(group, self.edit_checker)
         widget.double_clicked.connect(self._handle_group_item_click)
         widget.renamed.connect(self._handle_group_renamed)
         widget.deleted.connect(self._handle_group_deleted)

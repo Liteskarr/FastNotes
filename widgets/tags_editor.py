@@ -1,3 +1,7 @@
+"""
+Модуль, отвечающий за редактирование и создание тегов для заметок.
+"""
+
 from typing import List
 
 import PyQt5.uic as uic
@@ -8,7 +12,7 @@ from PyQt5.QtWidgets import (QDialog,
                              QInputDialog)
 
 from structures.tags_update import TagsUpdate
-from widgets.tag_item import TagItem
+from widgets.tag_item import TagItemWidget
 
 
 class TagsEditorWidget(QDialog):
@@ -28,7 +32,7 @@ class TagsEditorWidget(QDialog):
         self.saving_button.clicked.connect(self._handle_saving)
 
     def _draw_tag(self, name: str) -> None:
-        widget = TagItem(name)
+        widget = TagItemWidget(name)
         widget.deleted.connect(self._handle_tag_deleting)
         item = QListWidgetItem()
         item.setSizeHint(widget.sizeHint())

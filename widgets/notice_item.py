@@ -1,3 +1,7 @@
+"""
+Отвечает за отрисовку напоминаний в QListWidget.
+"""
+
 import PyQt5.uic as uic
 from PyQt5.QtCore import (pyqtSignal)
 from PyQt5.QtWidgets import (QWidget)

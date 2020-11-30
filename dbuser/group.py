@@ -1,3 +1,7 @@
+"""
+Модуль, отвечающий за взаимодействие с данными групп в SQL-таблице.
+"""
+
 from typing import List, Dict
 
 from dbuser.connection_interface import ConnectionInterface

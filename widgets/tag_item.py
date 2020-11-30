@@ -1,9 +1,13 @@
+"""
+Модуль, отвечающий за отрисоку тега в QListWidget.
+"""
+
 import PyQt5.uic as uic
 from PyQt5.QtCore import (pyqtSignal)
 from PyQt5.QtWidgets import (QWidget)
 
 
-class TagItem(QWidget):
+class TagItemWidget(QWidget):
     deleted = pyqtSignal(str)
 
     def __init__(self, tag: str):
@@ -16,5 +20,5 @@ class TagItem(QWidget):
         self.tag_name.setText(self._tag)
         self.deleting_button.clicked.connect(self._handle_tag_deleting)
 
-    def _handle_tag_deleting(self):
+    def _handle_tag_deleting(self) -> None:
         self.deleted.emit(self._tag)

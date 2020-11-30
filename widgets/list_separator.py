@@ -1,3 +1,7 @@
+"""
+Визуальный разделитель виджетов в QListWidget.
+"""
+
 import PyQt5.uic as uic
 from PyQt5.QtWidgets import (QWidget)
 

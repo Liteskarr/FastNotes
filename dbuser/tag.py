@@ -1,3 +1,7 @@
+"""
+Модуль, отвечащий за взаимодействие с данными тегов SQL-таблицы.
+"""
+
 import sqlite3
 from typing import List, Dict
 

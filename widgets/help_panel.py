@@ -1,3 +1,7 @@
+"""
+Диалоговое окно справки.
+"""
+
 import PyQt5.uic as uic
 # Из-за особенностей PyQt строку ниже удалять не требуется
 from PyQt5.QtWebEngineWidgets import QWebEngineView

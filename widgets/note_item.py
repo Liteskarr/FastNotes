@@ -1,3 +1,7 @@
+"""
+Модуль, отвечающий за отображение заметки в проводнике.
+"""
+
 from typing import List
 
 import PyQt5.uic as uic
@@ -7,7 +11,7 @@ from PyQt5.QtWidgets import (QWidget)
 from structures.note import NoteData
 
 
-class NoteItem(QWidget):
+class NoteItemWidget(QWidget):
     clicked = pyqtSignal(int)
 
     def __init__(self, data: NoteData, tags: List[str] = None, parent=None):
@@ -30,4 +34,4 @@ class NoteItem(QWidget):
         if event.type() == QEvent.MouseButtonPress:
             self.clicked.emit(self._data.id)
             return True
-        return super(NoteItem, self).eventFilter(source, event)
+        return super(NoteItemWidget, self).eventFilter(source, event)

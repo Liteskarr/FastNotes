@@ -1,3 +1,7 @@
+"""
+Модуль, представляющий из себя диалоговое окно для поиска данных по приложению.
+"""
+
 import re
 import sqlite3
 from typing import Tuple, List, Callable, Iterable
@@ -8,6 +12,7 @@ from PyQt5.QtWidgets import (QDialog,
                              QWidget,
                              QListWidgetItem)
 
+import consts
 from dbuser.group import GroupsUser
 from dbuser.note import NotesUser
 from dbuser.tag import TagUser
@@ -15,10 +20,9 @@ from structures.group import GroupData
 from structures.note import NoteData
 from structures.note_with_tags import NoteWithTags
 from widgets.list_separator import ListSeparatorWidget
-from widgets.searching_result import SearchingResultPanel
+from widgets.searching_result import SearchingResultWidget
 
 
-DATETIME_FORMAT = "%d.%m.%Y"
 POSITION_SLICE = 20
 
 
@@ -34,7 +38,7 @@ def is_sub_sequence(original: Iterable, request: Iterable) -> bool:
         return True
 
 
-def construct_function_with_args(function, *args):
+def construct_function_with_args(function, *args) -> Callable:
     def dec():
         return function(*args)
 
@@ -83,8 +87,8 @@ class SearchingDialog(QDialog):
         widget = ListSeparatorWidget(title)
         self._fast_push(widget)
 
-    def _add_searching_result(self, major: str, minor: str, callback: Callable):
-        widget = SearchingResultPanel(major, minor, callback)
+    def _add_searching_result(self, major: str, minor: str, callback: Callable) -> None:
+        widget = SearchingResultWidget(major, minor, callback)
         self._fast_push(widget)
 
     def _get_filtered_notes_by_name(self) -> List[Tuple[NoteData, str]]:
@@ -120,7 +124,7 @@ class SearchingDialog(QDialog):
         if not self._get_regex_using():
             return [group for group in groups if is_sub_sequence(group.name.lower(), request.lower())]
 
-    def _redraw(self):
+    def _redraw(self) -> None:
         self._clear()
         notes_by_name = self._get_filtered_notes_by_name()
         notes_by_text = self._get_filtered_notes_by_text()
@@ -134,7 +138,7 @@ class SearchingDialog(QDialog):
             self._add_separator('Заметки')
             for note, group_name in notes_by_name:
                 self._add_searching_result(note.name,
-                                           f'{group_name} - {note.creation_date.strftime(DATETIME_FORMAT)}',
+                                           f'{group_name} - {note.creation_date.strftime(consts.DATETIME_FORMAT)}',
                                            construct_function_with_args(self.note_chosen.emit,
                                                                         note.id,
                                                                         0))
@@ -156,7 +160,7 @@ class SearchingDialog(QDialog):
         if notes_by_text:
             self._add_separator('Результаты по тексту')
             for note, position in notes_by_text:
-                self._add_searching_result(f'{note.name} - {note.creation_date.strftime(DATETIME_FORMAT)}',
+                self._add_searching_result(f'{note.name} - {note.creation_date.strftime(consts.DATETIME_FORMAT)}',
                                            note.text[position:position + POSITION_SLICE],
                                            construct_function_with_args(self.note_chosen.emit,
                                                                         note.id,

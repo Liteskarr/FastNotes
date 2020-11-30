@@ -1,3 +1,7 @@
+"""
+Точка входа в программу.
+"""
+
 import configparser
 import sys
 

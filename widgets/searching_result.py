@@ -1,3 +1,7 @@
+"""
+Модуль, отвечающий за отображение результата поиска в QListWidget.
+"""
+
 from typing import Callable
 
 import PyQt5.uic as uic
@@ -9,7 +13,7 @@ def fizzbuzz() -> None:
     pass
 
 
-class SearchingResultPanel(QWidget):
+class SearchingResultWidget(QWidget):
     def __init__(self,
                  major: str = '',
                  minor: str = '',
@@ -33,4 +37,4 @@ class SearchingResultPanel(QWidget):
     def eventFilter(self, source: QObject, event: QEvent) -> bool:
         if event.type() == QEvent.MouseButtonRelease:
             self._clicked_callback()
-        return super(SearchingResultPanel, self).eventFilter(source, event)
+        return super(SearchingResultWidget, self).eventFilter(source, event)

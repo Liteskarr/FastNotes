@@ -1,3 +1,10 @@
+"""
+Этот модуль призван объединить все виджеты и остальные модули в приложение.
+Содержит класс, которые занимается как раз этим.
+Он получился достаточно громоздким, но я постарался сделать так, чтобы в нем было не сложно разобраться.
+Также из-за особенностей sqlite3, этот класс берет на себя всю ответственность за работу с подключениями SQL.
+"""
+
 import sqlite3
 from typing import List
 
@@ -76,9 +83,6 @@ class Window(QMainWindow):
         visible = self.explorer_widget.isVisible()
         self.explorer_widget.setVisible(not visible)
         self.menu_button.setText('<' if not visible else '>')
-
-    def _fix_explorer(self):
-        self.explorer_widget.items.adjustSize()
 
     def _handle_note_adding(self, group_id: int) -> None:
         self._sql_notes_user.create_new_note('Новая заметка...', group_id)

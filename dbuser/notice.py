@@ -1,3 +1,7 @@
+"""
+Модуль, отвечащий за взаимодействие с данными напоминаний SQL-таблицы.
+"""
+
 from typing import List
 
 from dbuser.connection_interface import ConnectionInterface
