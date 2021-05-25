@@ -1,0 +1,4 @@
+PyQt5
+PyQtWebEngine
+markdown2
+pyinstaller
